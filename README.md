@@ -17,7 +17,7 @@ The `show.py` script will take a YAML file-path as a command line argument and w
 
 ```
 python show.py test/sample.yaml > graph.gv    # save output to a new file
-dot -Tpdf graph.gv -o render.pdf      # use GraphViz to render as PDF
+dot -Tpdf graph.gv -o render.pdf              # use GraphViz to render as PDF
 ```
 
 ### Example
