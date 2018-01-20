@@ -16,7 +16,7 @@ brew install graphviz
 The `show.py` script will take a YAML file-path as a command line argument and will output a GraphViz directed graph to standard output.
 
 ```
-python show.py ast.yaml > graph.gv    # save output to a new file
+python show.py test/sample.yaml > graph.gv    # save output to a new file
 dot -Tpdf graph.gv -o render.pdf      # use GraphViz to render as PDF
 ```
 
