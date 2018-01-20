@@ -1,6 +1,6 @@
 # yaml-ast
 Since the structure of YAML is whitespace-oriented, this tool allows you to visualize the structure of a YAML document as a directed graph.
-A major use-case is to visualize Abstract Syntax Trees (ASTs) that are serialized in YAML.
+A major use-case for this tool is to visualize Abstract Syntax Trees (ASTs) that are serialized in YAML.
 
 ### Requirements
 
