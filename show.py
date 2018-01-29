@@ -2,6 +2,7 @@
 
 import sys
 import yaml
+import string
 
 
 def out (s):
@@ -16,7 +17,8 @@ def getID():
     return n
     
 def asAttr(attr, val):
-    return " [" + attr + "=\"" + val + "\"]"
+    escaped = string.replace(val, '\"', '\\\"')  # " -> \"
+    return " [" + attr + "=\"" + escaped + "\"]"
 
 def render(ast, name=None):
     if name is None:
