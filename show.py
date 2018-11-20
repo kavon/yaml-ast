@@ -15,7 +15,7 @@ def getID():
     n = str(uniq)
     uniq += 1
     return n
-    
+
 def asAttr(attr, val):
     escaped = string.replace(val, '\"', '\\\"')  # " -> \"
     return " [" + attr + "=\"" + escaped + "\"]"
@@ -23,18 +23,18 @@ def asAttr(attr, val):
 def render(ast, name=None):
     if name is None:
         name = getID()
-        
+
     lab = ""
     edges = []  # (from, to, attr)
-    
+
     if type(ast) is dict:
         for key,val in ast.iteritems():
-            
+
             if type(val) is dict:
                 child = getID()
                 edges.append((name, child, asAttr("label", key)))
                 render(val, child)
-                
+
             elif type(val) is list:
                 last = None
                 for i in val:
@@ -44,20 +44,20 @@ def render(ast, name=None):
                     if last is not None:
                         edges.append((last, child, asAttr("style", "dashed")))
                     last = child
-                
+
             else:
                 lab += (str(key) + ": " + str(val) + "\\n")
-                
+
     else:
         lab += str(ast)
-    
+
     # output vertex
     out(name + asAttr("label", lab) + ";\n")
-    
+
     # output edges
     for (src, dest, attr) in edges:
         out(src + " -> " + dest + attr + ";\n")
-    
+
 
 
 
@@ -78,11 +78,12 @@ with open(infile, 'r') as stream:
         ast = yaml.load(stream)
 
         out ("digraph graphname {\n")
-        
+
         render(ast)
-        
+
         out ("}\n")
-        
+
     except yaml.YAMLError as exc:
+        print("pyYAML Parsing Error:")
         print(exc)
         sys.exit(1)
