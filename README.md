@@ -4,7 +4,7 @@ A major use-case for this tool is to visualize Abstract Syntax Trees (ASTs) that
 
 ### Requirements
 
-You need Python 2.7.x, PyYAML, and GraphViz installed:
+You need Python 3.x, PyYAML, and GraphViz installed:
 
 ```
 sudo pip install pyyaml

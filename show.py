@@ -2,7 +2,6 @@
 
 import sys
 import yaml
-import string
 
 
 def out (s):
@@ -17,7 +16,7 @@ def getID():
     return n
 
 def asAttr(attr, val):
-    escaped = string.replace(val, '\"', '\\\"')  # " -> \"
+    escaped = val.replace('\"', '\\\"')  # " -> \"
     return " [" + attr + "=\"" + escaped + "\"]"
 
 def render(ast, name=None):
@@ -28,7 +27,7 @@ def render(ast, name=None):
     edges = []  # (from, to, attr)
 
     if type(ast) is dict:
-        for key,val in ast.iteritems():
+        for key,val in ast.items():
 
             if type(val) is dict:
                 child = getID()
@@ -67,15 +66,15 @@ def render(ast, name=None):
 # check args
 myself = sys.argv[0]
 if len(sys.argv) != 2:
-    print "error: invalid number of arguments."
-    print "usage:\t" + myself + " [path to YAML file]"
+    print("error: invalid number of arguments.")
+    print("usage:\t" + myself + " [path to YAML file]")
     sys.exit(1)
 
 infile = sys.argv[1]
 
 with open(infile, 'r') as stream:
     try:
-        ast = yaml.load(stream)
+        ast = yaml.load(stream, Loader=yaml.CLoader)
 
         out ("digraph graphname {\n")
 
